@@ -11,7 +11,7 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => NewsCubit(),
+      create: (BuildContext context) => NewsCubit()..getBusiness(),
       child: BlocConsumer<NewsCubit, NewsStatus>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -24,12 +24,7 @@ class NewsLayout extends StatelessWidget {
               }, icon: Icon(Icons.search))],
             ),
             floatingActionButton: FloatingActionButton(onPressed: (){
-              DioHelper.getData(path: 'photos').then((value){
-                print(value.data.toString());
-                Dataa dataa = value.data;
-              }).catchError((error){
-                print(error.toString());
-              });
+
             },
               child: const Icon(Icons.add),
             ),

@@ -2,11 +2,13 @@ import 'package:dio/dio.dart';
 
 class DioHelper {
   static Dio dio = Dio();
+  static String _url = "https://jsonplaceholder.typicode.com/";
+  late Dio _dio;
 
   static init() {
     dio = Dio(
         BaseOptions(
-            baseUrl: "https://jsonplaceholder.typicode.com/",
+            baseUrl: _url,
             receiveDataWhenStatusError: true
         )
     );

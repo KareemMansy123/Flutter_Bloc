@@ -5,6 +5,7 @@ import 'package:news_app/Modules/science/scinece_screen.dart';
 import 'package:news_app/Modules/settings_screen/settings_screen.dart';
 import 'package:news_app/Modules/sports/sports_screen.dart';
 import 'package:news_app/cubit/status.dart';
+import 'package:news_app/shared/network/remote/dio_helper.dart';
 
 class NewsCubit extends Cubit<NewsStatus> {
   NewsCubit() : super(NewsInitState());
@@ -31,5 +32,22 @@ class NewsCubit extends Cubit<NewsStatus> {
   void changeBottomNavBar(int index) {
     currentIndex = index;
     emit(NewsBottomNavState());
+  }
+
+  List<dynamic> business = [];
+
+  void getBusiness(){
+    emit(NewsBusinessSuccessLoadingState());
+
+    DioHelper.getData(path: 'photos').then((value){
+      business = value.data;
+      print(business[0]['title']);
+      emit(NewsGetBusinessSuccessState());
+
+    }).catchError((error){
+      print(error.toString());
+      emit(NewsGetBusinessErrorState(error.toString()));
+
+    });
   }
 }
