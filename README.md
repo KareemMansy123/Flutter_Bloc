@@ -1,4 +1,4 @@
-# news_app
+# json placeholder
 
 A new Flutter project.
 
