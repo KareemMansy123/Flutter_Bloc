@@ -35,6 +35,7 @@ class NewsCubit extends Cubit<NewsStatus> {
   }
 
   List<dynamic> business = [];
+  List<dynamic> albums = [];
 
   void getBusiness(){
     emit(NewsBusinessSuccessLoadingState());
@@ -47,7 +48,20 @@ class NewsCubit extends Cubit<NewsStatus> {
     }).catchError((error){
       print(error.toString());
       emit(NewsGetBusinessErrorState(error.toString()));
+    });
+  }
 
+  void getAlbums(){
+    emit(NewsBusinessSuccessLoadingState());
+
+    DioHelper.getData(path: 'albums').then((value){
+      albums = value.data;
+      print(albums[0]['title']);
+      emit(NewsGetBusinessSuccessState());
+
+    }).catchError((error){
+      print(error.toString());
+      emit(NewsGetBusinessErrorState(error.toString()));
     });
   }
 }

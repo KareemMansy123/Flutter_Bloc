@@ -21,16 +21,15 @@ class NewsLayout extends StatelessWidget {
 
               }, icon: Icon(Icons.search))],
             ),
-            floatingActionButton: FloatingActionButton(onPressed: (){
-
-            },
-              child: const Icon(Icons.add),
-            ),
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,
               onTap: (index) {
                 cubit.changeBottomNavBar(index);
+                print(index.toString());
+                if (index == 1){
+                  NewsCubit().getAlbums();
+                }
               },
               items: cubit.bottomItem,
             ),
