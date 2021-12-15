@@ -48,13 +48,27 @@ class LoginScreen extends StatelessWidget {
                     controller: passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                        labelText: "Password",
-                        // hintText: "Email Address"
-                        // border: InputBorder.none // will remove under line
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.lock),
-                        suffixIcon: Icon(Icons.remove_red_eye)),
+                    // below decoration code would help you in designing the login error UI properly
+                    decoration: InputDecoration(  
+                            errorBorder:const OutlineInputBorder(
+                            borderSide: BorderSide(width: 2.0, color: Colors.red),
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))), 
+                            errorStyle: const TextStyle(color: Colors.red),
+                            errorText:"password cannot be empty" ,
+                            focusedBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(width: 2.0, color: Colors.white),
+                                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                            focusedErrorBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(width: 2.0, color: Colors.red),
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                            enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(width: 2.0, color: Colors.white),
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                            labelStyle: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white),
+                            labelText: "Password",
+              ),
                     onFieldSubmitted: (value) {
                       print(value);
                     },
